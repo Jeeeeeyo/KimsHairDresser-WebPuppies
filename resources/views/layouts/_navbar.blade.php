@@ -19,7 +19,7 @@
  
                 @Auth
                 <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Dashboard</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">Forms</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="{{ route('form.showall')}}">Forms</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="#">Services</a></li>
                 <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
                         aria-expanded="false" href="#"> {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} </a>

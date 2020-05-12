@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Forms;
+use App\CustomerResponse;
 
 class FormController extends Controller
 {
@@ -37,6 +38,18 @@ class FormController extends Controller
 
       return response('OK', 200)->header('Content-Type', 'text/plain');
     }
+     // STORE FORM TO DB
+     public function StoreFormData(Request $request)
+     {
+       $forms = new CustomerResponse;
+       $forms->user_id = $request->user_id;
+       $forms->form_name = $request->form_name;
+       $forms->form_id = $request->form_id;
+       $forms->form_json = $request->form_json;
+       $forms->save();
+ 
+       return response('OK', 200)->header('Content-Type', 'text/plain');
+     }
     public function CreateLink($forms)
     {
       // $forms = Forms::where('id', $request->id);
@@ -49,25 +62,24 @@ class FormController extends Controller
       $forms = $this->Get($id);
         
       $form_ = json_decode($forms->form_json);
-      $form_name = $forms->form_name;
-      return view('shared',compact('form_'),compact('form_name'));
+      return view('shared',compact('form_'),compact('forms'));
     }
     public function view_responses($id)
     {
       return view('allresponse',compact('id'));
     }
     public function GetResponse($id){        
-      $forms = Forms::where('id', $id)->with('CustomerResponse');
+      $forms = Forms::where('id', $id)->with('CustomerResponse')->first();
       $customerResponse = $forms->CustomerResponse;
-      return $customerResponse;
+      return $customerResponse->toArray();
     }
     public function ViewResponseForm($id)
     {
-      $forms = $this->Get($id);
-        
-      $form_ = json_decode($forms->form_json);
-      $form_name = $forms->form_name;
-      return view('shared',compact('form_'),compact('form_name'));
+      $forms_response = CustomerResponse::where('id', $id)->first();
+
+      $forms = $this->Get($forms_response->form_id);
+      $form_ = json_decode($forms_response->form_json);
+      return view('shared',compact('form_'),compact('forms'));
     }
     
 

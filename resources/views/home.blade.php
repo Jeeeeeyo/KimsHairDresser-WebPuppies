@@ -96,7 +96,7 @@ Swal.fire({
     confirmButtonText:
     '<a href="/forms" style="text-decoration: none;color:white;"> Great!</a>',
 })
-    },);
+    });
      }
      else{alert('Please add a form title')}
      

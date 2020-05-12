@@ -6,6 +6,7 @@
         <div class="row">
             <div class="col-md-12" style="margin: 10px;">
                 <h3 style="color: rgb(0,0,0);">Forms</h3>
+                <a class="btn btn-primary py-2 px-3 float-right" href="{{ route('forms.new')}}">Create New Form</a>
             </div>
             <div class="col-md-12" style="margin: 10px;">
                 <div class="table-responsive">
@@ -39,8 +40,23 @@
 @endsection
 @section('scripts')
 <script>
- 
+  function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).attr('href')).select();
+  document.execCommand("copy");
+  $temp.remove();
+  Swal.fire({
+    title: 'Link Copied!',
+    text: 'Link:' + $(element).attr('href'),
+    icon: 'success', 
+    confirmButtonText:
+    '<a href="#" style="text-decoration: none;color:white;"> Great!</a>',
+})
+}
 $(document).ready(function() {
+   
+
     $('#example').DataTable( {
       "ajax": {
           "url": "{{route('form.getall')}}",
@@ -54,7 +70,7 @@ $(document).ready(function() {
             { data: "description",
          "render": function(data, type, row, meta){
             if(type === 'display'){
-                data = '<a href="' + data + '">' + data + '</a>';
+                data = '<button href="' + window.location.origin + '/' + data + '" onmousedown="copyToClipboard(' + "'#" + row.id + "'"+ ')" id="' + row.id + '"> Copy Link </button>';
             }
 
             return data; }},  

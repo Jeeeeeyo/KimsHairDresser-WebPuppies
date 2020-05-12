@@ -16,20 +16,9 @@
                 
                 <th>Name</th>
                 <th>Created By</th>
-                <th>Link</th> 
-                <th>Date Created</th>    
+                <th>View</th> 
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>ID</th>     
-                
-                <th>Name</th>           
-                <th>Created By</th>
-                <th>Link</th> 
-                <th>Date Created</th>           
-            </tr>
-        </tfoot>
     </table> 
             </div>
         </div>
@@ -58,9 +47,9 @@ $(document).ready(function() {
       },
       columns: [
             { data: "id" },            
-            { data: "name" },
+            { data: "form_name" },
             { data: "created_at" },
-            { data: "description",
+            { data: "id",
          "render": function(data, type, row, meta){
             if(type === 'display'){
                 data = '<a href="/form/response/' + row.id + '">View Form</a>';
