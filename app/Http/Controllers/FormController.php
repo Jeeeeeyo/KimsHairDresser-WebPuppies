@@ -7,6 +7,9 @@ use App\CustomerResponse;
 
 class FormController extends Controller
 {
+  public function __construct(){
+    $this->middleware('auth');
+}
     // GET ALL FORMS IN DB 
     public function GetAll()
     {
