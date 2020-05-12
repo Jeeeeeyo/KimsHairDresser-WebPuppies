@@ -20,7 +20,7 @@
 
 
                 </form>
-                <button type="button" id="get-user-data">Get Updated formData</button>
+                <button type="button" id="get-user-data">Submit Form</button>
             </div>
         </div>
     </div>
