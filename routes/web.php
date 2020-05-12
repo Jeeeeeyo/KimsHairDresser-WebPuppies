@@ -22,11 +22,13 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/form/getall', 'FormController@GetAll')->name('form.getall');
-Route::get('/form/view_responses', 'FormController@view_responses')->name('form.view_responses');
+Route::get('/form/view_responses/{id}', 'FormController@view_responses')->name('form.view_responses');
 Route::get('/form/get', 'FormController@Get')->name('form.get');
-Route::get('/form/getresponses', 'FormController@GetResponse')->name('form.getresponse');
+Route::get('/form/getresponses/{id}', 'FormController@GetResponse')->name('form.getresponse');
 
 Route::post('/form/store', 'FormController@Store')->name('form.store');
-Route::get('/getall', 'FormController@index')->name('form.showall');
+Route::get('/forms', 'FormController@index')->name('form.showall');
 Route::get('/form/shared/{id}', 'FormController@Shared')->name('form.shared');
+Route::get('/form/response/{id}', 'FormController@ViewResponseForm')->name('form.response.view');
   
+       

@@ -16,14 +16,12 @@ class FormController extends Controller
     {
       return view('getall');
     }
-
     // GET SINGLE FORM FROM DB BY ID 
     public function Get($id)
     {
       $forms = Forms::where('id', $id);
       return $forms->first();
     }
-
     // STORE FORM TO DB
     public function Store(Request $request)
     {
@@ -39,7 +37,6 @@ class FormController extends Controller
 
       return response('OK', 200)->header('Content-Type', 'text/plain');
     }
-
     public function CreateLink($forms)
     {
       // $forms = Forms::where('id', $request->id);
@@ -47,8 +44,6 @@ class FormController extends Controller
       $forms->save();
       return true;
     }
-
-
     public function Shared($id)
     {
       $forms = $this->Get($id);
@@ -57,17 +52,25 @@ class FormController extends Controller
       $form_name = $forms->form_name;
       return view('shared',compact('form_'),compact('form_name'));
     }
-
-    public function view_responses()
+    public function view_responses($id)
     {
-      return view('allresponse');
+      return view('allresponse',compact('id'));
     }
-
     public function GetResponse($id){        
       $forms = Forms::where('id', $id)->with('CustomerResponse');
       $customerResponse = $forms->CustomerResponse;
       return $customerResponse;
     }
+    public function ViewResponseForm($id)
+    {
+      $forms = $this->Get($id);
+        
+      $form_ = json_decode($forms->form_json);
+      $form_name = $forms->form_name;
+      return view('shared',compact('form_'),compact('form_name'));
+    }
+    
+
 
 
 

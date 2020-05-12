@@ -18,18 +18,9 @@
                 <th>Created By</th>
                 <th>Link</th> 
                 <th>Date Created</th>    
+                <th>View Responses</th>    
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>ID</th>     
-                
-                <th>Name</th>           
-                <th>Created By</th>
-                <th>Link</th> 
-                <th>Date Created</th>           
-            </tr>
-        </tfoot>
     </table> 
             </div>
         </div>
@@ -67,7 +58,14 @@ $(document).ready(function() {
             }
 
             return data; }},  
-            { data: "created_at" }    
+            { data: "created_at" },
+            { data: "description",
+         "render": function(data, type, row, meta){
+            if(type === 'display'){
+                data = '<a href="/form/view_responses/' + row.id + '">View Responses</a>';
+            }
+
+            return data; }} 
         ],
     } );
 } );

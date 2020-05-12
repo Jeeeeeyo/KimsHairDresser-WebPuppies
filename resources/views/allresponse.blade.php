@@ -52,22 +52,21 @@
 $(document).ready(function() {
     $('#example').DataTable( {
       "ajax": {
-          "url": "{{route('form.getresponse')}}",
+          "url": "{{route('form.getresponse', $id)}}",
           "type": "GET",
           "dataSrc": ""
       },
       columns: [
             { data: "id" },            
-            { data: "form_id" },
             { data: "name" },
+            { data: "created_at" },
             { data: "description",
          "render": function(data, type, row, meta){
             if(type === 'display'){
-                data = '<a href="' + data + '">' + data + '</a>';
+                data = '<a href="/form/response/' + row.id + '">View Form</a>';
             }
 
-            return data; }},  
-            { data: "created_at" }    
+            return data; }}    
         ],
     } );
 } );
