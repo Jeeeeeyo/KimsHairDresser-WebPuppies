@@ -94,7 +94,7 @@ Swal.fire({
     title: 'Form has been saved!',
     icon: 'success', 
     confirmButtonText:
-    '<a href="/getall" style="text-decoration: none;color:white;"> Great!</a>',
+    '<a href="/form/getall" style="text-decoration: none;color:white;"> Great!</a>',
 })
     },);
      }
